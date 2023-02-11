@@ -65,9 +65,9 @@ def main():
     load_dotenv()
     token = os.environ['NASA_TOKEN']
 
-    # fetch_spacex_last_launch(folder_name)
+    fetch_spacex_last_launch(folder_name)
     fetch_nasa_apod(folder_name, token)
-    # fetch_epic(folder_name, token)
+    fetch_epic(folder_name, token)
 
 
 if __name__ == '__main__':
