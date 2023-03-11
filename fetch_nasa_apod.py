@@ -1,11 +1,13 @@
-import os
-import requests
 import argparse
-from tools import download_image
+import os
+
+import requests
 from dotenv import load_dotenv
 
+from tools import download_image
 
-def fetch_nasa_apod(folder_name, token, count):
+
+def fetch_nasa_apod(token, count, folder_name):
     url = 'https://api.nasa.gov/planetary/apod'
     payload = {'api_key': token,
                'count': count}
@@ -19,20 +21,22 @@ def fetch_nasa_apod(folder_name, token, count):
 
 
 def main():
-    folder_name = 'images'
-    os.makedirs(folder_name, exist_ok=True)
-
     load_dotenv()
     token = os.environ['NASA_TOKEN']
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('count',
-                        type=int,
-                        help='Enter the number of pictures you want to download.',
-                        default=None)
+    parser.add_argument(
+        'count',
+        type=int,
+        help='Enter the number of pictures you want to download.',
+        default=None,
+    )
     args = parser.parse_args()
 
-    fetch_nasa_apod(folder_name, token, args.count)
+    folder_name = 'images'
+    os.makedirs(folder_name, exist_ok=True)
+
+    fetch_nasa_apod(token, args.count, folder_name)
 
 
 if __name__ == '__main__':

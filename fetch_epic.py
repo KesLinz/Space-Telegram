@@ -1,17 +1,19 @@
 import os
+
 import requests
-from tools import download_image
 from dotenv import load_dotenv
 
+from tools import download_image
 
-def fetch_epic(folder_name, token):
+
+def fetch_epic(token, folder_name):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     payload = {'api_key': token}
     response = requests.get(url, params=payload)
     response.raise_for_status()
 
     for image_dict in response.json():
-        image_name = image_dict['image']
+        image_name = image_dict[folder_name]
         date, time = image_dict['date'].split(' ')
         year, month, day = date.split('-')
 
@@ -21,12 +23,13 @@ def fetch_epic(folder_name, token):
 
 
 def main():
+    load_dotenv()
+    token = os.environ['NASA_TOKEN']
+
     folder_name = 'images'
     os.makedirs(folder_name, exist_ok=True)
 
-    load_dotenv()
-    token = os.environ['NASA_TOKEN']
-    fetch_epic(folder_name, token)
+    fetch_epic(token, folder_name)
 
 
 if __name__ == '__main__':
