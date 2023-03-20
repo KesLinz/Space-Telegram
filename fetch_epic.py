@@ -13,7 +13,7 @@ def fetch_epic(token, folder_name):
     response.raise_for_status()
 
     for image_dict in response.json():
-        image_name = image_dict[folder_name]
+        image_name = image_dict['image']
         date, time = image_dict['date'].split(' ')
         year, month, day = date.split('-')
 
