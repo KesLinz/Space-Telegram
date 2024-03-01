@@ -4,10 +4,10 @@
 ### Установка переменных окружения
 Для начала вам нужно получить все необходимые токены. Создайте файл ".env" и введите следующее:
 ```
-NASA_TOKEN=ваш токен
+NASA_TOKEN=your token
 SPACEX_LAUNCH_ID=5eb87d47ffd86e000604b38a
-TELEGRAM_BOT_TOKEN=ваш токен бота
-TELEGRAM_CHAT_ID=ваш id чата
+TELEGRAM_BOT_TOKEN=your bot token
+TELEGRAM_CHAT_ID=your chat id
 ```
 `NASA_TOKEN` - это токен для работы с api nasa. Чтобы его получить пройдите по [ссылке](https://api.nasa.gov/#apod) и зарегистируйтесь.
 
